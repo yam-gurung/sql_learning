@@ -1,0 +1,15 @@
+1. second highest salary
+
+with ranked_salaries as (select name,salary,dense_rank() over (order by salary desc) as salary_rank from employee ) select name,salary from ranked_salaries where salary_rank=2;
++---------+--------+
+| name    | salary |
++---------+--------+
+| nishant | 500000 |
++---------+--------+
+
+mysql> select max(salary) as second_highest_salary from employee where salary<(select max(salary) from employee);
++-----------------------+
+| second_highest_salary |
++-----------------------+
+|                500000 |
++-----------------------+
