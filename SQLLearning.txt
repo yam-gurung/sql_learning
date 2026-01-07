@@ -13,3 +13,8 @@ mysql> select max(salary) as second_highest_salary from employee where salary<(s
 +-----------------------+
 |                500000 |
 +-----------------------+
+
+-- 3rd highest salary
+
+select * from (
+select  *,dense_rank() over(order by salary desc) as salary_rank from employee )where salary_rank=3
