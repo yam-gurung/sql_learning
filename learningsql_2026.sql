@@ -77,6 +77,11 @@ and emp1.department=emp1.department
 and emp1.city=emp2.city
 and emp1.id<>emp2.id
 
+-- duplicate records
+select * from (select name,salary,department,city,employeeid,row_number() 
+over(partition by name,salary,department,city,employeeid) rowno from employee)
+where rowno>1;
+
 --select *from employee;
 
 
